@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沖縄家族旅行 2026 | 9人で巡るやんばる4日間</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean-deep:#0A3E4A;
+    --ocean-mid:#0F5C6B;
+    --jungle:#2E7D4F;
+    --jungle-deep:#1E5636;
+    --coral:#FF6B4A;
+    --hibiscus:#FF4F81;
+    --sand:#F2B84B;
+    --cream:#FBF6EC;
+    --paper:#FFFCF6;
+    --ink:#1E2A2C;
+    --ink-soft:#4A5A5C;
+    --line:#E7DFCE;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.disp{font-family:'Zen Maru Gothic',sans-serif;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- NAV ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,62,74,0.96);
+    backdrop-filter:blur(6px);
+    display:flex; align-items:center; gap:6px;
+    padding:10px 14px;
+    overflow-x:auto;
+    box-shadow:0 2px 14px rgba(0,0,0,0.18);
+  }
+  .navbar::-webkit-scrollbar{display:none;}
+  .navbar a{
+    flex:0 0 auto;
+    font-size:12.5px; font-weight:700; color:#EAF6F1;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.16);
+    padding:7px 13px; border-radius:999px;
+    white-space:nowrap; text-decoration:none;
+    letter-spacing:.02em;
+  }
+  .navbar a.nav-flight{ background:var(--sand); color:#3A2A05; border-color:transparent;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 100% at 15% 0%, #12707F 0%, var(--ocean-deep) 55%, var(--jungle-deep) 100%);
+    color:#fff;
+    padding:46px 22px 90px;
+    overflow:hidden;
+  }
+  .hero-leaf{position:absolute; opacity:.5;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; letter-spacing:.14em;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px; border-radius:999px; margin-bottom:18px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--coral);}
+  .hero h1{
+    font-size:34px; font-weight:900; margin:0 0 10px; line-height:1.35;
+    text-shadow:0 2px 18px rgba(0,0,0,0.25);
+  }
+  .hero h1 .accent{color:var(--sand);}
+  .hero p.sub{font-size:14.5px; color:#DCEDE6; margin:0 0 26px; max-width:520px;}
+  .hero-stats{display:flex; gap:10px; flex-wrap:wrap;}
+  .stat-chip{
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+    border-radius:14px; padding:10px 16px; min-width:100px;
+  }
+  .stat-chip .num{font-family:'Zen Maru Gothic'; font-size:20px; font-weight:900; color:var(--sand);}
+  .stat-chip .lbl{font-size:11px; color:#CFE7DF; margin-top:2px;}
+  .wave{position:absolute; left:0; right:0; bottom:-2px; line-height:0;}
+
+  /* ---------- OVERVIEW STRIP ---------- */
+  .section{padding:34px 18px; max-width:900px; margin:0 auto;}
+  .section-title{
+    font-size:20px; font-weight:900; margin:0 0 4px; display:flex; align-items:center; gap:8px;
+  }
+  .section-title .bar{width:5px; height:20px; background:var(--coral); border-radius:3px; display:inline-block;}
+  .section-sub{font-size:12.5px; color:var(--ink-soft); margin:0 0 18px;}
+
+  .overview-grid{display:grid; grid-template-columns:1fr; gap:10px;}
+  @media(min-width:640px){ .overview-grid{grid-template-columns:repeat(4,1fr);} }
+  .ov-card{
+    position:relative;
+    border-radius:16px; padding:16px 16px 14px;
+    color:#fff; text-decoration:none;
+    box-shadow:0 8px 20px -8px rgba(0,0,0,0.35);
+    overflow:hidden;
+  }
+  .ov-card:before{content:"";position:absolute; inset:0; opacity:.16; background:
+     radial-gradient(circle at 90% 10%, #fff 0, transparent 45%);}
+  .ov-d1{background:linear-gradient(135deg,#0F5C6B,#0A3E4A);}
+  .ov-d2{background:linear-gradient(135deg,#2E7D4F,#1E5636);}
+  .ov-d3{background:linear-gradient(135deg,#FF6B4A,#FF4F81);}
+  .ov-d4{background:linear-gradient(135deg,#F2B84B,#D9922B);}
+  .ov-day{font-size:11px; font-weight:700; opacity:.85; letter-spacing:.06em;}
+  .ov-date{font-family:'Zen Maru Gothic'; font-size:17px; font-weight:900; margin:2px 0 8px;}
+  .ov-list{font-size:12px; margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:3px; opacity:.96;}
+  .ov-list li:before{content:"・";}
+
+  /* ---------- FLIGHT CARD ---------- */
+  .flight-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    padding:18px 18px 16px; box-shadow:0 6px 18px -12px rgba(0,0,0,0.25);
+  }
+  .flight-row{display:flex; align-items:center; gap:14px; padding:10px 0;}
+  .flight-row+.flight-row{border-top:1px dashed var(--line);}
+  .plane-badge{
+    flex:0 0 auto; width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg,var(--ocean-mid),var(--ocean-deep));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .flight-info b{font-family:'Zen Maru Gothic'; font-size:16px;}
+  .flight-info .route{font-size:12px; color:var(--ink-soft);}
+
+  /* ---------- DAY SECTIONS ---------- */
+  .day-section{scroll-margin-top:64px; padding:0;}
+  .day-banner{
+    padding:26px 18px 34px; color:#fff; position:relative; overflow:hidden;
+  }
+  .day-banner .inner{max-width:900px; margin:0 auto; position:relative; z-index:2;}
+  .day-tag{font-size:12px; font-weight:700; opacity:.85; letter-spacing:.08em;}
+  .day-banner h2{font-size:24px; font-weight:900; margin:4px 0 6px;}
+  .day-banner .desc{font-size:13px; opacity:.92; max-width:520px;}
+  .db1{background:linear-gradient(120deg,#0F5C6B,#0A3E4A);}
+  .db2{background:linear-gradient(120deg,#2E7D4F,#1E5636);}
+  .db3{background:linear-gradient(120deg,#FF6B4A,#FF4F81);}
+  .db4{background:linear-gradient(120deg,#F2B84B,#D9922B);}
+
+  .day-body{max-width:900px; margin:0 auto; padding:22px 18px 10px;}
+
+  /* timeline */
+  .timeline{position:relative; margin:6px 0 22px; padding-left:26px;}
+  .timeline:before{
+    content:""; position:absolute; left:8px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(var(--line),var(--line));
+  }
+  .t-item{position:relative; padding-bottom:20px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-dot{
+    position:absolute; left:-26px; top:2px; width:18px; height:18px; border-radius:50%;
+    background:var(--paper); border:3px solid var(--coral);
+  }
+  .t-time{font-family:'Zen Maru Gothic'; font-weight:900; font-size:14px; color:var(--ocean-deep);}
+  .t-text{font-size:13.5px; margin-top:2px;}
+  .t-text .tag{
+    display:inline-block; font-size:10.5px; font-weight:700; color:#fff;
+    background:var(--jungle); padding:1px 8px; border-radius:999px; margin-left:6px; vertical-align:1px;
+  }
+  .t-note{font-size:11.5px; color:var(--ink-soft); margin-top:3px;}
+
+  /* map */
+  .map-card{
+    border-radius:16px; overflow:hidden; border:1px solid var(--line);
+    box-shadow:0 6px 16px -10px rgba(0,0,0,0.3); margin:14px 0 16px;
+  }
+  .map-card iframe{width:100%; height:220px; border:0; display:block;}
+  .map-cap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 14px; background:var(--paper); font-size:12.5px;
+  }
+  .map-cap b{font-weight:700;}
+  .link-row{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px;}
+  .btn{
+    font-size:12px; font-weight:700; text-decoration:none;
+    padding:9px 15px; border-radius:999px; display:inline-flex; align-items:center; gap:6px;
+  }
+  .btn-map{background:var(--ocean-deep); color:#fff;}
+  .btn-site{background:#fff; color:var(--ocean-deep); border:1.5px solid var(--ocean-deep);}
+  .btn-food{background:var(--hibiscus); color:#fff;}
+
+  /* tip box */
+  .tip-box{
+    background:#FFF6E4; border:1.5px dashed var(--sand); border-radius:16px;
+    padding:16px 16px 14px; margin:0 0 18px;
+  }
+  .tip-box h4{margin:0 0 8px; font-size:14px; display:flex; align-items:center; gap:6px;}
+  .tip-box ul{margin:0; padding-left:18px; font-size:12.8px;}
+  .tip-box li{margin-bottom:6px;}
+  .tip-box li:last-child{margin-bottom:0;}
+
+  /* lodging card */
+  .lodge-card{
+    display:flex; gap:12px; align-items:center;
+    background:var(--paper); border:1px solid var(--line); border-radius:16px;
+    padding:14px; margin-bottom:18px;
+  }
+  .lodge-ic{
+    flex:0 0 auto; width:46px; height:46px; border-radius:12px;
+    background:linear-gradient(135deg,var(--coral),var(--hibiscus));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lodge-card b{font-size:13.5px;}
+  .lodge-card .addr{font-size:11.5px; color:var(--ink-soft); margin-top:2px;}
+
+  .alert-box{
+    background:#FFF0EC; border-left:4px solid var(--coral); border-radius:10px;
+    padding:12px 14px; font-size:12.8px; margin:0 0 20px;
+  }
+
+  /* attraction grid (junglia) */
+  .attr-grid{display:grid; grid-template-columns:1fr; gap:10px; margin:0 0 18px;}
+  @media(min-width:600px){.attr-grid{grid-template-columns:1fr 1fr;}}
+  .attr-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:13px 14px;
+  }
+  .attr-card .name{font-weight:700; font-size:13px; display:flex; align-items:center; gap:6px;}
+  .attr-card .desc{font-size:11.8px; color:var(--ink-soft); margin-top:4px;}
+  .badge{font-size:9.5px; font-weight:700; padding:1px 7px; border-radius:999px; color:#fff;}
+  .badge-thrill{background:var(--hibiscus);}
+  .badge-family{background:var(--jungle);}
+  .badge-spa{background:var(--ocean-mid);}
+
+  /* footer */
+  footer{
+    background:var(--ocean-deep); color:#EAF3EF; padding:34px 18px 40px; margin-top:10px;
+  }
+  footer .inner{max-width:900px; margin:0 auto;}
+  footer h3{font-size:16px; margin:0 0 12px;}
+  footer ul{margin:0 0 20px; padding-left:18px; font-size:12.8px; line-height:1.9;}
+  .closing{
+    text-align:center; font-family:'Zen Maru Gothic'; font-weight:700; font-size:15px;
+    color:var(--sand); margin-top:10px;
+  }
+
+  .divider-illust{display:flex; justify-content:center; padding:6px 0 0; opacity:.9;}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#overview">✨ 全体</a>
+  <a href="#flight" class="nav-flight">✈️ フライト</a>
+  <a href="#day1">Day1</a>
+  <a href="#day2">Day2</a>
+  <a href="#day3">Day3</a>
+  <a href="#day4">Day4</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <svg class="hero-leaf" style="top:-30px; right:-30px;" width="180" height="180" viewBox="0 0 200 200"><path d="M100 10 C 160 30, 190 90, 160 160 C 120 130, 90 90, 100 10 Z" fill="#2E7D4F"/></svg>
+  <svg class="hero-leaf" style="bottom:40px; left:-40px;" width="140" height="140" viewBox="0 0 200 200"><path d="M100 10 C 160 30, 190 90, 160 160 C 120 130, 90 90, 100 10 Z" fill="#FF6B4A" transform="rotate(120 100 100)"/></svg>
+  <div class="eyebrow"><span class="dot"></span>OKINAWA FAMILY TRIP 2026</div>
+  <h1>沖縄家族旅行<br><span class="accent">やんばる満喫4日間</span> 🌺</h1>
+  <p class="sub">10月2日(金)〜10月5日(月)・9人・レンタカー2台で北部エリアを巡る、水族館 × ジャングリア × プライベートヴィラBBQの旅。</p>
+  <div class="hero-stats">
+    <div class="stat-chip"><div class="num">4</div><div class="lbl">DAYS</div></div>
+    <div class="stat-chip"><div class="num">9</div><div class="lbl">MEMBERS</div></div>
+    <div class="stat-chip"><div class="num">2</div><div class="lbl">CARS</div></div>
+    <div class="stat-chip"><div class="num">2</div><div class="lbl">STAYS</div></div>
+  </div>
+  <svg class="wave" viewBox="0 0 500 60" preserveAspectRatio="none" style="width:100%;height:60px;">
+    <path d="M0,30 C120,60 380,0 500,30 L500,60 L0,60 Z" fill="#FBF6EC"/>
+  </svg>
+</header>
+
+<!-- OVERVIEW -->
+<section class="section" id="overview">
+  <div class="section-title"><span class="bar"></span>ひと目で分かる旅程</div>
+  <p class="section-sub">タップすると各日の詳細にジャンプします</p>
+  <div class="overview-grid">
+    <a class="ov-card ov-d1" href="#day1">
+      <div class="ov-day">DAY 1 ・ 10/2(金)</div>
+      <div class="ov-date">到着 & チェックイン</div>
+      <ul class="ov-list">
+        <li>16:00 那覇空港着</li>
+        <li>レンタカー受取</li>
+        <li>コートヤード泊</li>
+      </ul>
+    </a>
+    <a class="ov-card ov-d2" href="#day2">
+      <div class="ov-day">DAY 2 ・ 10/3(土)</div>
+      <div class="ov-date">水族館 & 絶景</div>
+      <ul class="ov-list">
+        <li>🐟 美ら海水族館</li>
+        <li>🌊 万座毛</li>
+        <li>ぱいかじで夕食</li>
+      </ul>
+    </a>
+    <a class="ov-card ov-d3" href="#day3">
+      <div class="ov-day">DAY 3 ・ 10/4(日) 🔥盛りだくさん</div>
+      <div class="ov-date">ジャングリア & スパ</div>
+      <ul class="ov-list">
+        <li>🦕 ジャングリア</li>
+        <li>💆 Spa Junglia</li>
+        <li>🍖 ヴィラでBBQ</li>
+      </ul>
+    </a>
+    <a class="ov-card ov-d4" href="#day4">
+      <div class="ov-day">DAY 4 ・ 10/5(月)</div>
+      <div class="ov-date">ゆっくり帰路へ</div>
+      <ul class="ov-list">
+        <li>ヴィラでのんびり</li>
+        <li>13:00頃 出発</li>
+        <li>15:50 那覇発</li>
+      </ul>
+    </a>
+  </div>
+</section>
+
+<!-- FLIGHT -->
+<section class="section" id="flight">
+  <div class="section-title"><span class="bar"></span>フライト情報</div>
+  <div class="flight-card">
+    <div class="flight-row">
+      <div class="plane-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M2 16l20-8-8 20-3-8-8-4z" fill="#F2B84B"/></svg>
+      </div>
+      <div class="flight-info">
+        <b>往路 NH1211</b>
+        <div class="route">福岡(FUK) 14:15発 → 那覇(OKA) 16:00着</div>
+      </div>
+    </div>
+    <div class="flight-row">
+      <div class="plane-badge" style="transform:scaleX(-1);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M2 16l20-8-8 20-3-8-8-4z" fill="#F2B84B"/></svg>
+      </div>
+      <div class="flight-info">
+        <b>復路 NH1210</b>
+        <div class="route">那覇(OKA) 15:50発 → 福岡(FUK) 17:35着</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 1 ================= -->
+<div class="day-section" id="day1">
+  <div class="day-banner db1">
+    <div class="inner">
+      <div class="day-tag">DAY 1 ・ 10月2日(金)</div>
+      <h2>🛫 到着、そしてやんばるへ</h2>
+      <div class="desc">那覇空港に降り立ったらレンタカー2台をピックアップ。北へ向かい、海沿いのリゾートでゆったり初日を過ごします。</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">16:00</div><div class="t-text">那覇空港 着 <span class="tag">START</span></div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">16:00〜</div><div class="t-text">レンタカー2台 受取</div><div class="t-note">9名分の荷物量を考えて余裕のある車種を選択</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">〜18:00頃</div><div class="t-text">コートヤード・マリオット沖縄リゾートへ移動・チェックイン</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">夜</div><div class="t-text">夕食 <span class="tag">調整中</span></div><div class="t-note">ホテル内 or 周辺レストラン、決まり次第更新します</div></div>
+    </div>
+
+    <div class="map-card">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=26.53633,127.945266&z=15&output=embed"></iframe>
+      <div class="map-cap"><b>🏨 コートヤード・マリオット沖縄リゾート</b></div>
+    </div>
+    <div class="link-row">
+      <a class="btn btn-map" href="https://www.google.com/maps/dir/?api=1&destination=26.53633,127.945266" target="_blank">📍 地図で見る・行き方</a>
+      <a class="btn btn-site" href="https://www.marriott.com/en-us/hotels/okacy-courtyard-okinawa-resort/overview/" target="_blank">🔗 公式サイト</a>
+    </div>
+
+    <div class="lodge-card">
+      <div class="lodge-ic">🏨</div>
+      <div>
+        <b>宿泊:コートヤード・マリオット沖縄リゾート</b>
+        <div class="addr">沖縄県名護市喜瀬115-2</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DAY 2 ================= -->
+<div class="day-section" id="day2">
+  <div class="day-banner db2">
+    <div class="inner">
+      <div class="day-tag">DAY 2 ・ 10月3日(土)</div>
+      <h2>🐟 美ら海 & 絶景ドライブ</h2>
+      <div class="desc">チェックアウトして北上、世界屈指の水族館へ。恩納村へ南下する道中は絶景スポットにも立ち寄ります。</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">午前</div><div class="t-text">ホテルチェックアウト</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">午前〜昼</div><div class="t-text">🐟 美ら海水族館 観光 <span class="tag">MUST SEE</span></div><div class="t-note">ジンベエザメが泳ぐ黒潮の海タンクは必見</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">移動中</div><div class="t-text">🌊 万座毛 に立ち寄り</div><div class="t-note">象の鼻に似た絶景の岬。滞在目安30分、入場100円</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">夕方</div><div class="t-text">琉心-RUSIN Private Pool Villa ONNAへ移動・チェックイン</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">夜</div><div class="t-text">夕食:沖縄の台所 ぱいかじ 🎵 <span class="tag">確定</span></div><div class="t-note">ヴィラのお隣!沖縄の三線ライブを見ながら食事できます</div></div>
+    </div>
+
+    <div class="map-card">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=26.694338,127.878013&z=15&output=embed"></iframe>
+      <div class="map-cap"><b>🐟 沖縄美ら海水族館</b></div>
+    </div>
+    <div class="link-row">
+      <a class="btn btn-map" href="https://www.google.com/maps/dir/?api=1&destination=26.694338,127.878013" target="_blank">📍 地図で見る・行き方</a>
+      <a class="btn btn-site" href="https://churaumi.okinawa/" target="_blank">🔗 公式サイト</a>
+    </div>
+
+    <div class="map-card">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=26.5052353,127.8504781&z=15&output=embed"></iframe>
+      <div class="map-cap"><b>🌊 万座毛</b></div>
+    </div>
+    <div class="link-row">
+      <a class="btn btn-map" href="https://www.google.com/maps/dir/?api=1&destination=26.5052353,127.8504781" target="_blank">📍 地図で見る・行き方</a>
+    </div>
+
+    <div class="tip-box">
+      <h4>💡 攻略メモ</h4>
+      <ul>
+        <li>水族館は広いので、混雑する黒潮の海タンク前は時間帯をずらすと家族全員でゆっくり見られます</li>
+        <li>万座毛は夕方に近いほど西日で岬のシルエットが映えます、写真好きな方は要チェック</li>
+        <li>ぱいかじは送迎サービスもあるお店ですが、今回はヴィラの目の前なので徒歩でOK</li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=26.4529393,127.8065455&z=16&output=embed"></iframe>
+      <div class="map-cap"><b>🍽️ 沖縄の台所 ぱいかじ 恩納店</b></div>
+    </div>
+    <div class="link-row">
+      <a class="btn btn-food" href="https://www.google.com/maps/place/?q=place_id:ChIJ7XoqBMsa5TQRGPWXBdHoG2c" target="_blank">🍖 お店の地図・口コミ</a>
+    </div>
+
+    <div class="lodge-card">
+      <div class="lodge-ic">🌴</div>
+      <div>
+        <b>宿泊:琉心-RUSIN Private Pool Villa ONNA</b>
+        <div class="addr">沖縄県国頭郡恩納村冨着750-1</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DAY 3 ================= -->
+<div class="day-section" id="day3">
+  <div class="day-banner db3">
+    <div class="inner">
+      <div class="day-tag">DAY 3 ・ 10月4日(日) 🔥 一番盛りだくさんな1日</div>
+      <h2>🦕 ジャングリア → 💆 スパ → 🍖 BBQ</h2>
+      <div class="desc">アクティブに遊んだ後は、ギネス世界記録認定のインフィニティスパで癒され、夜はヴィラで乾杯。ペース配分がカギの1日です。</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="alert-box">⏰ この日は特に時間配分が肝心です。パークは午前中に主要アトラクションを回りきるペースで!人気アトラクションは開園と同時に整理券取得班を先行させるのがおすすめです。</div>
+
+    <div class="timeline">
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">8:00〜9:00頃</div><div class="t-text">ヴィラで朝食・準備</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">9:00〜10:00</div><div class="t-text">ヴィラ出発 → 🦕 ジャングリア沖縄へ</div><div class="t-note">恩納村から車で約30〜40分</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">10:00〜15:00</div><div class="t-text">ジャングリアで遊ぶ</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">16:00頃〜</div><div class="t-text">💆 Spa Junglia でリラックス</div><div class="t-note">パークからシャトルバス約5分・要事前予約</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">17:30頃</div><div class="t-text">スパ出発</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">18:30頃</div><div class="t-text">ヴィラ着(通常より遅めの見込み)</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">夜</div><div class="t-text">🍖 BBQ(ヴィラ内)</div><div class="t-note">食材は事前準備しておくとスムーズです</div></div>
+    </div>
+
+    <div class="map-card">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=26.6422201,127.9735982&z=14&output=embed"></iframe>
+      <div class="map-cap"><b>🦕 JUNGLIA OKINAWA</b></div>
+    </div>
+    <div class="link-row">
+      <a class="btn btn-map" href="https://www.google.com/maps/dir/?api=1&destination=26.6422201,127.9735982" target="_blank">📍 地図で見る・行き方</a>
+      <a class="btn btn-site" href="https://junglia.jp/" target="_blank">🔗 公式サイト・チケット</a>
+    </div>
+
+    <div class="section-title" style="font-size:15px; margin-top:4px;">🎢 ジャングリア おすすめアトラクション</div>
+    <div class="attr-grid">
+      <div class="attr-card">
+        <div class="name">🦖 ダイナソーサファリ <span class="badge badge-thrill">看板</span></div>
+        <div class="desc">特殊車両で恐竜世界を走行する没入体験。T-REXとの撮影も。</div>
+      </div>
+      <div class="attr-card">
+        <div class="name">🪂 スカイフェニックス <span class="badge badge-thrill">爽快</span></div>
+        <div class="desc">高さ約19mから約280m滑空する、鳥になった気分を味わえるライド。</div>
+      </div>
+      <div class="attr-card">
+        <div class="name">🚙 バギーボルテージ <span class="badge badge-thrill">スリル</span></div>
+        <div class="desc">本格バギーで亜熱帯ジャングルを疾走。</div>
+      </div>
+      <div class="attr-card">
+        <div class="name">💦 スプラッシュバトル <span class="badge badge-family">家族向け</span></div>
+        <div class="desc">水鉄砲×音楽のショー型アトラクション。暑い沖縄にぴったり。</div>
+      </div>
+      <div class="attr-card">
+        <div class="name">🐾 ヤンバルフレンズ <span class="badge badge-family">お子様</span></div>
+        <div class="desc">やんばるの森のキャラクターと交流できる体験型。</div>
+      </div>
+      <div class="attr-card">
+        <div class="name">♨️ Spa Junglia <span class="badge badge-spa">ギネス認定</span></div>
+        <div class="desc">最大のインフィニティ風呂(82.65㎡)。天然温泉・洞窟風呂も。</div>
+      </div>
+    </div>
+
+    <div class="map-card">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=26.6385621,127.9673628&z=15&output=embed"></iframe>
+      <div class="map-cap"><b>♨️ Spa Junglia</b></div>
+    </div>
+    <div class="link-row">
+      <a class="btn btn-map" href="https://www.google.com/maps/dir/?api=1&destination=26.6385621,127.9673628" target="_blank">📍 地図で見る・行き方</a>
+    </div>
+
+    <div class="tip-box">
+      <h4>💡 攻略メモ</h4>
+      <ul>
+        <li>ジャングリアは事前予約制。人気アトラクションの整理券は朝イチで争奪戦になるので、専用アプリを事前にダウンロードしておくのがおすすめ</li>
+        <li>Spa Junglia は12歳以上入湯税150円が別途必要。タトゥーがある方はカバーシールの用意あり</li>
+        <li>営業時間13:00〜20:00、料金は大人2,640円。17:30出発なら十分満喫できる時間です</li>
+      </ul>
+    </div>
+
+    <div class="lodge-card">
+      <div class="lodge-ic">🌴</div>
+      <div>
+        <b>宿泊:琉心-RUSIN Private Pool Villa ONNA(連泊)</b>
+        <div class="addr">沖縄県国頭郡恩納村冨着750-1</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DAY 4 ================= -->
+<div class="day-section" id="day4">
+  <div class="day-banner db4">
+    <div class="inner">
+      <div class="day-tag">DAY 4 ・ 10月5日(月)</div>
+      <h2>👋 ゆっくり過ごして帰路へ</h2>
+      <div class="desc">最終日はのんびりと。帰りの便の時間から逆算して、無理のないタイミングで出発しましょう。</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">午前</div><div class="t-text">ヴィラでゆっくり</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">13:00〜13:15頃までに</div><div class="t-text">ヴィラ出発 → レンタカー返却</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">14:30〜14:50頃</div><div class="t-text">那覇空港 到着・チェックイン</div><div class="t-note">恩納村から空港まで約60〜70分</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">15:50</div><div class="t-text">那覇発 ✈️</div></div>
+      <div class="t-item"><span class="t-dot"></span><div class="t-time">17:35</div><div class="t-text">福岡着 <span class="tag">GOAL</span></div></div>
+    </div>
+
+    <div class="alert-box">⏰ 帰りの便は15:50発です。レンタカー返却の時間も見て、遅くとも13:00〜13:15頃には宿を出発しましょう。</div>
+
+    <div class="map-card">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=26.2001297,127.6466452&z=13&output=embed"></iframe>
+      <div class="map-cap"><b>✈️ 那覇空港</b></div>
+    </div>
+    <div class="link-row">
+      <a class="btn btn-map" href="https://www.google.com/maps/dir/?api=1&destination=26.2001297,127.6466452" target="_blank">📍 地図で見る・行き方</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <h3>📌 みんなで共有しておきたいポイント</h3>
+    <ul>
+      <li>1日目の夕食場所は現在調整中です。決まり次第お知らせします。</li>
+      <li>3日目はジャングリア→Spa Junglia→BBQと盛りだくさんな1日。BBQ開始が普段より遅め(18:30頃)になりそうなので、食材は事前準備しておくと安心です。</li>
+      <li>4日目は帰りの便が15:50発のため、遅くとも13:00〜13:15頃には宿を出発予定です。</li>
+      <li>レンタカーは2台に分かれます。詳細(担当ドライバーなど)は追ってご連絡します。</li>
+      <li>ジャングリア・Spa Junglia は事前予約制です。予約が取れ次第、入園・入浴時間をこちらに反映します。</li>
+    </ul>
+    <div class="closing">良い旅になりますように 🌴🐬</div>
+  </div>
+</footer>
+
+</body>
+</html>
