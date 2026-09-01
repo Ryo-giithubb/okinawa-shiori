@@ -88,6 +88,27 @@
   .stat-chip .lbl{font-size:11px; color:#CFE7DF; margin-top:2px;}
   .wave{position:absolute; left:0; right:0; bottom:-2px; line-height:0;}
 
+  /* countdown */
+  .countdown-banner{
+    display:inline-flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.28);
+    border-radius:14px; padding:10px 16px; margin-bottom:18px;
+    font-family:'Zen Maru Gothic'; font-weight:900; font-size:15px; color:#fff;
+  }
+  .countdown-banner .cd-num{
+    font-size:26px; color:var(--sand); line-height:1; margin:0 2px;
+  }
+  .countdown-banner.cd-today{ background:linear-gradient(135deg,#FF6B4A,#FF4F81); border-color:transparent; }
+
+  /* family avatars */
+  .family-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:20px;}
+  .fam-avatar{
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; border:2px solid rgba(255,255,255,0.55);
+    box-shadow:0 3px 8px rgba(0,0,0,0.25);
+  }
+
   /* ---------- OVERVIEW STRIP ---------- */
   .section{padding:34px 18px; max-width:900px; margin:0 auto;}
   .section-title{
@@ -259,7 +280,36 @@
 <header class="hero">
   <svg class="hero-leaf" style="top:-30px; right:-30px;" width="180" height="180" viewBox="0 0 200 200"><path d="M100 10 C 160 30, 190 90, 160 160 C 120 130, 90 90, 100 10 Z" fill="#2E7D4F"/></svg>
   <svg class="hero-leaf" style="bottom:40px; left:-40px;" width="140" height="140" viewBox="0 0 200 200"><path d="M100 10 C 160 30, 190 90, 160 160 C 120 130, 90 90, 100 10 Z" fill="#FF6B4A" transform="rotate(120 100 100)"/></svg>
+
+  <!-- シーサー(手描き風) -->
+  <svg class="hero-leaf" style="top:14px; right:14px; opacity:.85;" width="52" height="52" viewBox="0 0 64 64">
+    <ellipse cx="32" cy="46" rx="20" ry="12" fill="#F2B84B"/>
+    <circle cx="32" cy="26" r="16" fill="#F2B84B"/>
+    <circle cx="22" cy="14" r="6" fill="#F2B84B"/>
+    <circle cx="42" cy="14" r="6" fill="#F2B84B"/>
+    <circle cx="26" cy="24" r="2.4" fill="#1E2A2C"/>
+    <circle cx="38" cy="24" r="2.4" fill="#1E2A2C"/>
+    <path d="M24 32 Q32 38 40 32" stroke="#1E2A2C" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <circle cx="32" cy="20" r="2" fill="#1E2A2C"/>
+  </svg>
+
+  <!-- ハイビスカス -->
+  <svg class="hero-leaf" style="bottom:70px; right:24px; opacity:.5;" width="60" height="60" viewBox="0 0 60 60">
+    <g fill="#FF4F81">
+      <ellipse cx="30" cy="14" rx="9" ry="14"/>
+      <ellipse cx="30" cy="14" rx="9" ry="14" transform="rotate(72 30 30)"/>
+      <ellipse cx="30" cy="14" rx="9" ry="14" transform="rotate(144 30 30)"/>
+      <ellipse cx="30" cy="14" rx="9" ry="14" transform="rotate(216 30 30)"/>
+      <ellipse cx="30" cy="14" rx="9" ry="14" transform="rotate(288 30 30)"/>
+    </g>
+    <circle cx="30" cy="30" r="5" fill="#F2B84B"/>
+  </svg>
+
   <div class="eyebrow"><span class="dot"></span>OKINAWA FAMILY TRIP 2026</div>
+
+  <!-- カウントダウン -->
+  <div id="countdown-banner" class="countdown-banner"></div>
+
   <h1>沖縄家族旅行<br><span class="accent">やんばる満喫4日間</span> 🌺</h1>
   <p class="sub">10月2日(金)〜10月5日(月)・9人・レンタカー2台で北部エリアを巡る、水族館 × ジャングリア × プライベートヴィラBBQの旅。</p>
   <div class="hero-stats">
@@ -268,6 +318,20 @@
     <div class="stat-chip"><div class="num">2</div><div class="lbl">CARS</div></div>
     <div class="stat-chip"><div class="num">2</div><div class="lbl">STAYS</div></div>
   </div>
+
+  <!-- 家族アバター -->
+  <div class="family-row">
+    <div class="fam-avatar" style="background:#F2B84B;">👨</div>
+    <div class="fam-avatar" style="background:#FF6B4A;">👩</div>
+    <div class="fam-avatar" style="background:#2E7D4F;">👦</div>
+    <div class="fam-avatar" style="background:#0F5C6B;">👧</div>
+    <div class="fam-avatar" style="background:#FF4F81;">🧑</div>
+    <div class="fam-avatar" style="background:#F2B84B;">👵</div>
+    <div class="fam-avatar" style="background:#2E7D4F;">👴</div>
+    <div class="fam-avatar" style="background:#0F5C6B;">🧒</div>
+    <div class="fam-avatar" style="background:#FF6B4A;">👶</div>
+  </div>
+
   <svg class="wave" viewBox="0 0 500 60" preserveAspectRatio="none" style="width:100%;height:60px;">
     <path d="M0,30 C120,60 380,0 500,30 L500,60 L0,60 Z" fill="#FBF6EC"/>
   </svg>
@@ -542,7 +606,10 @@
 
 <!-- ================= DAY 3 ================= -->
 <div class="day-section" id="day3">
-  <div class="day-banner db3">
+  <div class="day-banner db3" style="position:relative; overflow:hidden;">
+    <svg style="position:absolute; right:-10px; bottom:-14px; opacity:.22;" width="130" height="130" viewBox="0 0 100 100">
+      <path d="M20 80 Q10 70 15 55 Q10 45 20 35 Q18 20 32 15 Q30 8 40 6 Q42 12 40 18 Q55 16 60 28 Q68 26 72 34 Q80 32 82 42 Q90 44 88 52 L78 50 Q76 60 66 62 L70 78 L60 76 L58 64 Q46 66 38 60 L34 74 L24 72 L28 58 Q20 56 20 80 Z" fill="#fff"/>
+    </svg>
     <div class="inner">
       <div class="day-tag">DAY 3 ・ 10月4日(日) 🔥 一番盛りだくさんな1日</div>
       <h2>🦕 ジャングリア → 💆 スパ → 🍖 BBQ</h2>
@@ -695,6 +762,26 @@
     <div class="closing">良い旅になりますように 🌴🐬</div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var el = document.getElementById('countdown-banner');
+  if(!el) return;
+  var start = new Date(2026,9,2,0,0,0);   // 10/2
+  var end   = new Date(2026,9,6,0,0,0);   // 10/5終了(翌0時)
+  var now = new Date();
+  var oneDay = 24*60*60*1000;
+  if(now < start){
+    var days = Math.ceil((start - now) / oneDay);
+    el.innerHTML = '🌴 旅行まであと <span class="cd-num">' + days + '</span> 日!';
+  } else if(now >= start && now < end){
+    el.classList.add('cd-today');
+    el.innerHTML = '✈️ 旅行中です!楽しんできてください 🌺';
+  } else {
+    el.innerHTML = '🌺 素敵な旅になりましたか?また行きたいですね';
+  }
+})();
+</script>
 
 </body>
 </html>
